@@ -13,7 +13,7 @@
   "authors": [
     {
       "name": "miki4920",
-      "url": "https://github.com/miki4920
+      "url": "https://github.com/miki4920"
     }
   ],
   "esmodules": [
@@ -36,5 +36,5 @@
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
   "license": "LICENSE",
-  "readme": "README.md",
+  "readme": "README.md"
 }
