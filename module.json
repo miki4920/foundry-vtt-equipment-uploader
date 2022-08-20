@@ -1,7 +1,7 @@
 {
-  "id": "module",
-  "title": "New Module",
-  "description": "",
+  "id": "foundry-vtt-offline-viewer",
+  "title": "Foundry VTT Offline Viewer",
+  "description": "A TypeScript module used for displaying wealth of Pathfinder 2E Characters Offline",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
@@ -12,15 +12,10 @@
   },
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "miki4920",
+      "url": "https://github.com/miki4920
     }
   ],
-  "relationships": {
-    "systems": [],
-    "requires": []
-  },
   "esmodules": [
     "scripts/module.js"
   ],
@@ -42,10 +37,4 @@
   "download": "This is auto replaced",
   "license": "LICENSE",
   "readme": "README.md",
-  "media": [
-    {
-      "type": "icon",
-      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
-    }
-  ]
 }
