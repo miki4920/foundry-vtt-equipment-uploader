@@ -1,0 +1,18 @@
+{
+  "files": [
+    "scripts/index.ts",
+    "src/scripts/lib/lib.ts"
+  ],
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["DOM", "ES6", "ES2017"],
+    "types": ["@league-of-foundry-developers/foundry-vtt-types"],
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "strictNullChecks": false
+  },
+  "exclude": [
+    "./node_modules",
+    "src/gulpfile.ts"
+  ]
+}
