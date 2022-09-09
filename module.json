@@ -17,19 +17,18 @@
     }
   ],
   "esmodules": [
-    "scripts/module.js"
+    "dist/main.js"
   ],
   "scripts": [
-    "scripts/lib/lib.js"
   ],
   "styles": [
-    "styles/module.css"
+    "dist/styles/module.css"
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "languages/en.json"
+      "path": "dist/languages/en.json"
     }
   ],
   "url": "This is auto replaced",
