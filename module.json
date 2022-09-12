@@ -17,12 +17,12 @@
     }
   ],
   "esmodules": [
-    "dist/main.js"
+    "dist/offlineViewerBundle.js"
   ],
   "scripts": [
   ],
   "styles": [
-    "dist/styles/module.css"
+    "dist/styles/index.css"
   ],
   "languages": [
     {
