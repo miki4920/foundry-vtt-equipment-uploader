@@ -1,7 +1,6 @@
 import Tagify from '@yaireo/tagify'
 
 Hooks.on('init', async function() {
-    // @ts-ignore
     await game["settings"].registerMenu("foundry-vtt-offline-viewer", "foundry-vtt-offline-viewer-settings", {
         name: "Wealth Settings",
         label: "Open Me!",
@@ -11,7 +10,6 @@ Hooks.on('init', async function() {
         restricted: true
     });
 
-    // @ts-ignore
     await game["settings"].register('foundry-vtt-offline-viewer', 'wealthIDs', {
         scope: 'world',
         config: false,
@@ -35,7 +33,7 @@ class TagifyInputs extends FormApplication {
     }
 
     static get defaultOptions() {
-        return {
+        return mergeObject(super.defaultOptions, {
             classes: ['form'],
             popOut: true,
             template: `modules/foundry-vtt-offline-viewer/dist/forms/wealthForm.html`,
@@ -43,32 +41,33 @@ class TagifyInputs extends FormApplication {
             title: 'Wealth Form',
             height: 220,
             width: 800,
-        };
+        });
 
     }
 
-    //
     protected _updateObject(event: Event, formData?: object): Promise<unknown> {
         let IDs: { priorityIDs: String[]; IDs: String[] };
         IDs = {"priorityIDs": [], "IDs": []};
+        // @ts-ignore
         if(formData["priorityWealthInput"] !== "") {
+            // @ts-ignore
             for (const element of JSON.parse(formData["priorityWealthInput"])) {
                 IDs["priorityIDs"].push(element["value"])
             }
         }
+        // @ts-ignore
         if(formData["wealthInput"] !== "") {
+            // @ts-ignore
             for (const element of JSON.parse(formData["wealthInput"])) {
                 IDs["IDs"].push(element["value"])
             }
         }
-        // @ts-ignore
-        return game.settings.set('foundry-vtt-offline-viewer', 'wealthIDs', IDs)
+        return game["settings"].set('foundry-vtt-offline-viewer', 'wealthIDs', IDs)
     }
 
     // @ts-ignore
     getData() {
-        // @ts-ignore
-        const wealthIDs = game.settings.get('foundry-vtt-offline-viewer', 'wealthIDs');
+        const wealthIDs = game["settings"].get('foundry-vtt-offline-viewer', 'wealthIDs');
         let priorityIDs = wealthIDs["priorityIDs"].join()
         let IDs = wealthIDs["IDs"].join()
         return {"IDs": IDs, "priorityIDs": priorityIDs}
