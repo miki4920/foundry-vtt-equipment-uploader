@@ -31,7 +31,7 @@ class TagifyInputs extends FormApplication {
     }
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return {
             classes: ['form'],
             popOut: true,
             template: `modules/foundry-vtt-offline-viewer/dist/forms/wealthForm.html`,
@@ -39,13 +39,14 @@ class TagifyInputs extends FormApplication {
             title: 'Wealth Form',
             height: 220,
             width: 800,
-        });
+        };
 
     }
 
     //
     protected _updateObject(event: Event, formData?: object): Promise<unknown> {
-        let IDs = {"priorityIDs": [], "IDs": []}
+        let IDs: { priorityIDs: String[]; IDs: String[] };
+        IDs = {"priorityIDs": [], "IDs": []};
         if(formData["priorityWealthInput"] !== "") {
             for (const element of JSON.parse(formData["priorityWealthInput"])) {
                 IDs["priorityIDs"].push(element["value"])
