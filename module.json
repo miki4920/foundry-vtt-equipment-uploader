@@ -17,7 +17,7 @@
     }
   ],
   "esmodules": [
-    "dist/offlineViewerBundle.js"
+    "dist/main.js"
   ],
   "scripts": [
   ],
