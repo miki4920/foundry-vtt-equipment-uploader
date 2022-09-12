@@ -1,6 +1,7 @@
 import Tagify from '@yaireo/tagify'
 
 Hooks.on('init', async function() {
+    // @ts-ignore
     await game["settings"].registerMenu("foundry-vtt-offline-viewer", "foundry-vtt-offline-viewer-settings", {
         name: "Wealth Settings",
         label: "Open Me!",
@@ -10,6 +11,7 @@ Hooks.on('init', async function() {
         restricted: true
     });
 
+    // @ts-ignore
     await game["settings"].register('foundry-vtt-offline-viewer', 'wealthIDs', {
         scope: 'world',
         config: false,
@@ -26,7 +28,9 @@ class TagifyInputs extends FormApplication {
     override activateListeners(): void {
         const priorityInput = document.querySelector(`input[name="priorityWealthInput"]`)
         const regularInput = document.querySelector(`input[name="wealthInput"]`)
+        // @ts-ignore
         new Tagify(priorityInput)
+        // @ts-ignore
         new Tagify(regularInput)
     }
 
@@ -72,7 +76,3 @@ class TagifyInputs extends FormApplication {
 
 
 }
-
-Hooks.on('ready', async function() {
-
-});

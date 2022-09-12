@@ -2,11 +2,13 @@
   "name": "my-webpack-project",
   "version": "1.0.0",
   "dependencies": {
+    "@types/yaireo__tagify": "^4.16.0",
     "@yaireo/tagify": "^4.16.4",
     "gulp-webpack": "^1.5.0",
     "gulp-webpack-typescript-pipeline": "^17.0.1"
   },
   "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@webpack-cli/generators": "^2.5.0",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.3",
