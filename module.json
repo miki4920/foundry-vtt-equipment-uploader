@@ -17,7 +17,7 @@
     }
   ],
   "esmodules": [
-    "dist/main.js"
+    "dist/bundle.js"
   ],
   "scripts": [
   ],

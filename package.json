@@ -1,5 +1,5 @@
 {
-  "name": "my-webpack-project",
+  "name": "foundry-vtt-offline-viewer",
   "version": "1.0.0",
   "dependencies": {
     "@types/yaireo__tagify": "^4.16.0",
@@ -10,6 +10,7 @@
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@webpack-cli/generators": "^2.5.0",
+    "gulp-debug": "^4.0.0",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.3",
     "webpack": "^5.74.0",
