@@ -1,7 +1,6 @@
 {
   "files": [
-    "scripts/index.ts",
-    "src/scripts/lib/lib.ts"
+    "tsconfig.json"
   ],
   "compilerOptions": {
     "target": "ES2017",
