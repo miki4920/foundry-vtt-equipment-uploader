@@ -33,8 +33,8 @@ class TagifyInputs extends FormApplication {
     inputNames = ["priorityIDs", "IDs"]
     override activateListeners(): void {
         for(const input of this.inputNames) {
-            const inputElement = document.querySelector("#" + input)
-            Tagify(inputElement)
+            const inputElement = document.getElementById(input)
+            new Tagify(inputElement)
         }
     }
 
