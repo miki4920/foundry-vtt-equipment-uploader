@@ -15,13 +15,13 @@ export class DataHandler {
         return players
     }
 
-    getArmourValue(item, key) {
+    getArmourValue(item, armourKey) {
         let value = 0
         for(const key of Object.keys(properties["armor"])) {
             let runes = properties["armor"][key]
             let runeValue = runes[item["system"][key]["value"]]
-            runeValue = runeValue === undefined ? 0 : runeValue[key]
-            value = Math.max(value, isNaN(runeValue) ? 0 : runeValue)
+            runeValue = runeValue === undefined ? 0 : runeValue[armourKey]
+            value = Math.max(value, runeValue)
         }
         return value
     }
@@ -57,6 +57,10 @@ export class DataHandler {
                     const itemQuantity = item["system"]["quantity"]
                     const itemTotal = (itemValue * itemQuantity).toFixed(2);
                     const itemConsumable = (item["type"] === "consumable") ? 1 : 0;
+                    if(item["type"] === "armor") {
+                        console.log(itemValue)
+                        console.log(itemLevel)
+                    }
                 }
             }
         }
