@@ -21,20 +21,21 @@ Hooks.on("init", async function() {
     });
 });
 
+
+
+
 Hooks.on("updateItem", async function (equipment, system, diff, user) {
     if (user != game["user"].id) { return;}
-    let players = game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs")["IDs"]
-    for(const player of players) {
-        console.log(game["actors"].get(player))
-    }
+
 })
 
 class TagifyInputs extends FormApplication {
+    inputNames = ["priorityIDs", "IDs"]
     override activateListeners(): void {
-        const priorityInput = document.querySelector(`input[name="priorityWealthInput"]`)
-        const regularInput = document.querySelector(`input[name="wealthInput"]`)
-        new Tagify(priorityInput)
-        new Tagify(regularInput)
+        for(const input of this.inputNames) {
+            const inputElement = document.querySelector("#" + input)
+            Tagify(inputElement)
+        }
     }
 
     static get defaultOptions() {
@@ -54,14 +55,11 @@ class TagifyInputs extends FormApplication {
         let IDs: { priorityIDs: String[]; IDs: String[] };
         IDs = {"priorityIDs": [], "IDs": []};
         if (formData) {
-            if (formData["priorityWealthInput"] !== "") {
-                for (const element of JSON.parse(formData["priorityWealthInput"])) {
-                    IDs["priorityIDs"].push(element["value"])
-                }
-            }
-            if(formData["wealthInput"] !== "") {
-                for (const element of JSON.parse(formData["wealthInput"])) {
-                    IDs["IDs"].push(element["value"])
+            for(const input of this.inputNames) {
+                if (formData[input] !== "") {
+                    for (const element of JSON.parse(formData[input])) {
+                        IDs[input].push(element["value"])
+                    }
                 }
             }
         }
