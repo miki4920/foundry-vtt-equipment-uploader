@@ -1,5 +1,6 @@
 import Tagify from '@yaireo/tagify'
 import {DataHandler} from "./dataHandler"
+import {createDatabase, truncateTable} from "./database"
 
 Hooks.on("init", async function() {
     await game["settings"].registerMenu("foundry-vtt-offline-viewer", "foundry-vtt-offline-viewer-settings", {
@@ -27,6 +28,8 @@ Hooks.on("init", async function() {
 
 Hooks.on("updateItem", async function (equipment, system, diff, user) {
     if (user != game["user"].id) { return;}
+    await truncateTable("characters");
+    await truncateTable("items");
     new DataHandler(game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs"))
 
 })

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@yaireo/tagify": "^4.16.4",
+    "aws-sdk": "^2.1215.0",
     "path-browserify": "^1.0.1"
   },
   "devDependencies": {
