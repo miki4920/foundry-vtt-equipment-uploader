@@ -1,5 +1,28 @@
-#wealthForm section.window-content .form-group.setting .wealth {
-    background-color: rgba(0,0,0,.05);
+#wealthForm section.window-content {
+    display: block;
+}
+
+#wealthForm section.window-content .form-group.setting {
+    display: inherit;
+}
+
+#wealthForm section.window-content .form-group.setting tags{
+    background-color: rgba(0, 0, 0, 0.05);
     border: 1px solid #7a7971;
     border-radius: 3px;
+}
+
+#wealthForm section.window-content .form-group.setting tags.tagify--focus {
+    border: 1px solid #7a7971;
+    box-shadow: 0 0 5px red;
+}
+
+#wealthForm section.window-content .form-group.setting .wealth{
+    --tag-text-color--edit: #111;
+    --tag-inset-shadow-size: 1.35em;
+    --tag-pad: 0.2em 0.4em;
+    font-size: 14px;
+    --tag-remove-btn-bg--hover: black;
+    min-width: 0;
+    text-transform: none;
 }
