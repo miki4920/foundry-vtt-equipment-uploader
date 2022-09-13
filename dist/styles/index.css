@@ -20,8 +20,7 @@
 #wealthForm section.window-content .form-group.setting .wealth{
     --tag-text-color--edit: #111;
     --tag-inset-shadow-size: 1.35em;
-    --tag-pad: 0.2em 0.4em;
-    font-size: 14px;
+    font-size: 13px;
     --tag-remove-btn-bg--hover: black;
     min-width: 0;
     text-transform: none;
