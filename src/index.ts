@@ -20,6 +20,24 @@ Hooks.on('init', async function() {
         },
     });
 
+    await game["settings"].register('foundry-vtt-offline-viewer', 'actorsDirectory', {
+        name: "Actors Directory",
+        scope: 'world',
+        hint: "Pick a location of the Actor Directory to get wealth data file from.",
+        config: true,
+        type: String,
+        filePicker: "folder",
+        default: ""
+    })
+
+    await game["settings"].register('foundry-vtt-offline-viewer', 'actorsFile', {
+        name: "Actors File",
+        scope: 'world',
+        hint: "Insert a name of Actors File to get wealth data file from.",
+        config: true,
+        type: String,
+        default: ""
+    })
 });
 
 class TagifyInputs extends FormApplication {
