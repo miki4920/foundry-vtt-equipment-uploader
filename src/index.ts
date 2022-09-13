@@ -26,10 +26,8 @@ class TagifyInputs extends FormApplication {
     override activateListeners(): void {
         const priorityInput = document.querySelector(`input[name="priorityWealthInput"]`)
         const regularInput = document.querySelector(`input[name="wealthInput"]`)
-        // @ts-ignore
-        new Tagify(priorityInput)
-        // @ts-ignore
-        new Tagify(regularInput)
+        new Tagify(priorityInput, { pattern: /[a-zA-Z0-9]+$/gm })
+        new Tagify(regularInput, { pattern: /[a-zA-Z0-9]+$/gm })
     }
 
     static get defaultOptions() {
@@ -37,9 +35,9 @@ class TagifyInputs extends FormApplication {
             classes: ['form'],
             popOut: true,
             template: `modules/foundry-vtt-offline-viewer/dist/forms/wealthForm.html`,
-            id: 'foundry-vtt-offline-viewer-wealth-form',
+            id: 'wealthForm',
             title: 'Wealth Form',
-            height: 220,
+            height: 255,
             width: 800,
         });
 
@@ -48,18 +46,16 @@ class TagifyInputs extends FormApplication {
     protected _updateObject(event: Event, formData?: object): Promise<unknown> {
         let IDs: { priorityIDs: String[]; IDs: String[] };
         IDs = {"priorityIDs": [], "IDs": []};
-        // @ts-ignore
-        if(formData["priorityWealthInput"] !== "") {
-            // @ts-ignore
-            for (const element of JSON.parse(formData["priorityWealthInput"])) {
-                IDs["priorityIDs"].push(element["value"])
+        if (formData) {
+            if (formData["priorityWealthInput"] !== "") {
+                for (const element of JSON.parse(formData["priorityWealthInput"])) {
+                    IDs["priorityIDs"].push(element["value"])
+                }
             }
-        }
-        // @ts-ignore
-        if(formData["wealthInput"] !== "") {
-            // @ts-ignore
-            for (const element of JSON.parse(formData["wealthInput"])) {
-                IDs["IDs"].push(element["value"])
+            if(formData["wealthInput"] !== "") {
+                for (const element of JSON.parse(formData["wealthInput"])) {
+                    IDs["IDs"].push(element["value"])
+                }
             }
         }
         return game["settings"].set('foundry-vtt-offline-viewer', 'wealthIDs', IDs)
