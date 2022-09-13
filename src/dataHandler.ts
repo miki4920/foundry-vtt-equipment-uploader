@@ -15,15 +15,21 @@ export class DataHandler {
         return players
     }
 
+    getArmourValue(item, key) {
+        let value = 0
+        for(const key of Object.keys(properties["armor"])) {
+            let runes = properties["armor"][key]
+            let runeValue = runes[item["system"][key]["value"]]
+            runeValue = runeValue === undefined ? 0 : runeValue[key]
+            value = Math.max(value, isNaN(runeValue) ? 0 : runeValue)
+        }
+        return value
+    }
+
     getItemLevel(item) {
         let itemLevel = item["level"]
         if(item["type"] === "armor") {
-            for(const key of Object.keys(properties["armor"])) {
-                let runes = properties["armor"][key]
-                let runeLevel = runes[item["system"][key]["value"]]
-                runeLevel = runeLevel === undefined ? 0 : runeLevel["level"]
-                itemLevel = Math.max(itemLevel, isNaN(runeLevel) ? 0 : runeLevel)
-            }
+            itemLevel = Math.max(itemLevel, this.getArmourValue(item, "level"))
         }
         return itemLevel
     }
@@ -32,12 +38,7 @@ export class DataHandler {
         let value = item["system"]["price"]["value"].copperValue
         value /= 100
         if(item["type"] === "armor") {
-            for(const key of Object.keys(properties["armor"])) {
-                let runes = properties["armor"][key]
-                let runeValue = runes[item["system"][key]["value"]]
-                runeValue = runeValue === undefined ? 0 : runeValue["price"]
-                value = Math.max(value, runeValue)
-            }
+            value = Math.max(value, this.getArmourValue(item, "price"))
         }
         value /= item["system"]["price"]["per"]
         return value.toFixed(2)
