@@ -19,8 +19,6 @@
   "esmodules": [
     "dist/bundle.js"
   ],
-  "scripts": [
-  ],
   "styles": [
     "dist/styles/index.css"
   ],
