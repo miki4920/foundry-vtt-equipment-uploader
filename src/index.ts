@@ -1,4 +1,5 @@
 import Tagify from '@yaireo/tagify'
+import {DataHandler} from "./dataHandler"
 
 Hooks.on("init", async function() {
     await game["settings"].registerMenu("foundry-vtt-offline-viewer", "foundry-vtt-offline-viewer-settings", {
@@ -26,6 +27,7 @@ Hooks.on("init", async function() {
 
 Hooks.on("updateItem", async function (equipment, system, diff, user) {
     if (user != game["user"].id) { return;}
+    new DataHandler(game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs"))
 
 })
 
