@@ -1,6 +1,8 @@
 import Tagify from '@yaireo/tagify'
 import {DataHandler} from "./dataHandler"
-import {createDatabase, truncateTable} from "./database"
+import {truncateTable} from "./database"
+
+const AWS = require("aws-sdk")
 
 Hooks.on("init", async function() {
     await game["settings"].registerMenu("foundry-vtt-offline-viewer", "foundry-vtt-offline-viewer-settings", {
@@ -21,6 +23,24 @@ Hooks.on("init", async function() {
             "IDs": []
         },
     });
+
+    await game["settings"].register("foundry-vtt-offline-viewer", "accessKey", {
+        name: "Amazon Access Key",
+        hint: "Used to store access key to Amazon DynamoDB database.",
+        scope: 'world',
+        config: true,
+        type: String,
+        default: "",
+    });
+
+    await game["settings"].register("foundry-vtt-offline-viewer", "secretKey", {
+        name: "Amazon Secret Key",
+        hint: "Used to store secret key to Amazon DynamoDB database.",
+        scope: 'world',
+        config: true,
+        type: String,
+        default: "",
+    });
 });
 
 
@@ -28,9 +48,13 @@ Hooks.on("init", async function() {
 
 Hooks.on("updateItem", async function (equipment, system, diff, user) {
     if (user != game["user"].id) { return;}
-    await truncateTable("characters");
-    await truncateTable("items");
-    new DataHandler(game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs"))
+    AWS.config.update({region: 'eu-west-2',
+        accessKeyId: game["settings"].get("foundry-vtt-offline-viewer", "accessKey"),
+        secretAccessKey: game["settings"].get("foundry-vtt-offline-viewer", "secretKey")});
+    const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+    await truncateTable("characters", AWS)
+    await truncateTable("items", AWS)
+    new DataHandler(game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs"), ddb)
 
 })
 
