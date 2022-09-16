@@ -70,12 +70,11 @@ export async function truncateTable(tableName, AWS) {
             },
         };
 
-        return new Promise(function (resolve, reject) {
+        return new Promise<void>(function (resolve, reject) {
             docClient.delete(params, function (err, data) {
                 if (err) {
                     reject(err);
                 } else {
-                    // @ts-ignore
                     resolve();
                 }
             });
