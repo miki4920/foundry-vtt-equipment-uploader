@@ -19,13 +19,7 @@ export function createDatabase(AWS, ddb) {
             'WriteCapacityUnits': 1
         }
     };
-    ddb.createTable(characters,function(err, data) {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            console.log("Table Created", data);
-        }
-    })
+    ddb.createTable(characters,function(err, data) {})
     waiter.wait({TableName: 'characters'})
 
     const items = {
@@ -48,13 +42,7 @@ export function createDatabase(AWS, ddb) {
             }
     }
 
-    ddb.createTable(items, function(err, data) {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            console.log("Table Created", data);
-        }
-    })
+    ddb.createTable(items, function(err, data) {})
     waiter.wait({TableName: 'items'})
 }
 
@@ -64,21 +52,18 @@ export async function truncateTable(tableName, AWS) {
         let params = {
             TableName: table,
         };
-        let items = [];
+        let items: String[] = [];
         let data = await docClient.scan(params).promise();
-        // @ts-ignore
         items = [...items, ...data.Items];
         while (typeof data.LastEvaluatedKey != "undefined") {
-            // @ts-ignore
-            params.ExclusiveStartKey = data.LastEvaluatedKey;
+            params["ExclusiveStartKey"] = data.LastEvaluatedKey;
             data = await docClient.scan(params).promise();
-            // @ts-ignore
             items = [...items, ...data.Items];
         }
         return items;
     };
     const deleteItem = (table, id) => {
-        var params = {
+        let params = {
             TableName: table,
             Key: {
                 id: id,
@@ -100,8 +85,7 @@ export async function truncateTable(tableName, AWS) {
     async function deleteTable(tableName) {
         const allRecords = await getAllRecords(tableName);
         for (const item of allRecords) {
-            // @ts-ignore
-            await deleteItem(tableName, item.id);
+            await deleteItem(tableName, item["id"]);
         }
     }
 
