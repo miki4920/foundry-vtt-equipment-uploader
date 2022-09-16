@@ -47,7 +47,9 @@ export class DataHandler {
     }
 
     insertIntoDatabase() {
+        let priority = 0
         for (const key of Object.keys(this.players)) {
+            priority += 1
             for (const player of this.players[key]) {
                 const inventory = player["inventory"].entries();
                 const itemIDs: String[] = [];
@@ -78,6 +80,7 @@ export class DataHandler {
                         TableName: 'characters',
                         Item: {
                             'id': {"S": player["id"]},
+                            'priority': {"S": priority.toString()},
                             'name': {"S": player["name"]},
                             'items': {"SS": itemIDs}
                         }
