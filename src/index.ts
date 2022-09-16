@@ -1,4 +1,4 @@
-import Tagify from '@yaireo/tagify'
+import {tagifyInput} from "./characterTagify";
 import {DataHandler} from "./dataHandler"
 import {truncateTable} from "./database"
 
@@ -63,7 +63,7 @@ class TagifyInputs extends FormApplication {
     override activateListeners(): void {
         for(const input of this.inputNames) {
             const inputElement = document.getElementById(input)
-            new Tagify(inputElement)
+            tagifyInput(inputElement)
         }
     }
 
