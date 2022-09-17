@@ -11,6 +11,10 @@
     transform: scale(1.4);
 }
 
+.tagify__tag:hover .tagify__tag__avatar-wrap{
+    transform: scale(1.8) translateX(-10%);
+}
+
 .tagify__dropdown.users-list .tagify__dropdown__item__avatar-wrap{
     grid-area: image;
     width: 36px;
