@@ -75,7 +75,7 @@ class TagifyInputs extends FormApplication {
             id: "wealthForm",
             title: "Wealth Form",
             height: 255,
-            width: 840,
+            width: 900
         });
 
     }
