@@ -77,7 +77,6 @@ class TagifyInputs extends FormApplication {
             height: 255,
             width: 900
         });
-
     }
 
     protected _updateObject(event: Event, formData?: object): Promise<unknown> {
