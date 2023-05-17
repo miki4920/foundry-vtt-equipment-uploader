@@ -1,6 +1,6 @@
 {
-  "id": "foundry-vtt-offline-viewer",
-  "title": "Foundry VTT Offline Viewer",
+  "id": "foundry-vtt-equipment-uploader",
+  "title": "FoundryVTT Equipment Uploader",
   "description": "A TypeScript module used for displaying wealth of Pathfinder 2E Characters Offline",
   "version": "This is auto replaced",
   "library": "false",
