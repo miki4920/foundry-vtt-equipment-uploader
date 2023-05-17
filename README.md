@@ -15,7 +15,7 @@ The FoundryVTT Equipment Uploader is a client-side module for Foundry Virtual Ta
 ## Installation
 1. Install Foundry VTT according to the official Foundry VTT documentation.
 2. Inside Foundry VTT, navigate to the Add-on Modules option.
-3. Click Install Module and in the Manifest URL, paste the following link: `[Manifest URL](https://github.com/miki4920/foundry-vtt-equipment-uploader/releases/download/latest/module.json)`
+3. Click Install Module and in the Manifest URL, paste the following link: [Manifest URL](https://github.com/miki4920/foundry-vtt-equipment-uploader/releases/download/latest/module.json)
 4. After the installation is complete, enable the FoundryVTT Equipment Uploader module in the module settings of Foundry VTT.
 
 ## Configuration
