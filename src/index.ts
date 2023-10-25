@@ -5,7 +5,7 @@ import {truncateTable} from "./database"
 const AWS = require("aws-sdk")
 
 Hooks.on("init", async function() {
-    await game["settings"].registerMenu("foundry-vtt-offline-viewer", "foundry-vtt-offline-viewer-settings", {
+    await game["settings"].registerMenu("foundry-vtt-equipment-uploader", "foundry-vtt-equipment-uploader-settings", {
         name: "Wealth Settings",
         label: "Open Me!",
         hint: "This dialogue would allow you to insert players and treasury using Tagify.",
@@ -14,7 +14,7 @@ Hooks.on("init", async function() {
         restricted: true
     });
 
-    await game["settings"].register("foundry-vtt-offline-viewer", "wealthIDs", {
+    await game["settings"].register("foundry-vtt-equipment-uploader", "wealthIDs", {
         scope: 'world',
         config: false,
         type: Object,
@@ -24,7 +24,7 @@ Hooks.on("init", async function() {
         },
     });
 
-    await game["settings"].register("foundry-vtt-offline-viewer", "accessKey", {
+    await game["settings"].register("foundry-vtt-equipment-uploader", "accessKey", {
         name: "Amazon Access Key",
         hint: "Used to store access key to Amazon DynamoDB database.",
         scope: 'world',
@@ -33,7 +33,7 @@ Hooks.on("init", async function() {
         default: "",
     });
 
-    await game["settings"].register("foundry-vtt-offline-viewer", "secretKey", {
+    await game["settings"].register("foundry-vtt-equipment-uploader", "secretKey", {
         name: "Amazon Secret Key",
         hint: "Used to store secret key to Amazon DynamoDB database.",
         scope: 'world',
@@ -49,12 +49,12 @@ Hooks.on("init", async function() {
 Hooks.on("updateItem", async function (equipment, system, diff, user) {
     if (user != game["user"].id) { return;}
     AWS.config.update({region: 'eu-west-2',
-        accessKeyId: game["settings"].get("foundry-vtt-offline-viewer", "accessKey"),
-        secretAccessKey: game["settings"].get("foundry-vtt-offline-viewer", "secretKey")});
+        accessKeyId: game["settings"].get("foundry-vtt-equipment-uploader", "accessKey"),
+        secretAccessKey: game["settings"].get("foundry-vtt-equipment-uploader", "secretKey")});
     const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
     await truncateTable("characters", AWS)
     await truncateTable("items", AWS)
-    new DataHandler(game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs"), ddb)
+    new DataHandler(game["settings"].get("foundry-vtt-equipment-uploader", "wealthIDs"), ddb)
 
 })
 
@@ -71,7 +71,7 @@ class TagifyInputs extends FormApplication {
         return mergeObject(super.defaultOptions, {
             classes: ["form"],
             popOut: true,
-            template: `modules/foundry-vtt-offline-viewer/dist/forms/wealthForm.html`,
+            template: `modules/foundry-vtt-equipment-uploader/dist/forms/wealthForm.html`,
             id: "wealthForm",
             title: "Wealth Form",
             height: 255,
@@ -91,12 +91,12 @@ class TagifyInputs extends FormApplication {
                 }
             }
         }
-        return game["settings"].set("foundry-vtt-offline-viewer", "wealthIDs", IDs)
+        return game["settings"].set("foundry-vtt-equipment-uploader", "wealthIDs", IDs)
     }
 
     // @ts-ignore
     getData() {
-        const wealthIDs = game["settings"].get("foundry-vtt-offline-viewer", "wealthIDs");
+        const wealthIDs = game["settings"].get("foundry-vtt-equipment-uploader", "wealthIDs");
         let priorityIDs = wealthIDs["priorityIDs"].join()
         let IDs = wealthIDs["IDs"].join()
         return {"IDs": IDs, "priorityIDs": priorityIDs}
