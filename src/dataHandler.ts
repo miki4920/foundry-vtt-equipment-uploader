@@ -14,6 +14,8 @@ export class DataHandler {
         for (const key of Object.keys(IDs)) {
             players[key] = IDs[key].map(ID => game["actors"].get(ID))
         }
+        players["party"] = [game["actors"].party]
+        players["players"] =  game["actors"].party.members;
         return players
     }
 
@@ -51,9 +53,9 @@ export class DataHandler {
         for (const key of Object.keys(this.players)) {
             priority += 1
             for (const player of this.players[key]) {
-                const inventory = player["inventory"].entries();
+                const inventory = player.inventory.contents;
                 const itemIDs: String[] = [];
-                for (const [key, item] of inventory) {
+                for (const item of inventory) {
                     itemIDs.push(item["id"]);
                     const itemName = item["name"];
                     const itemLevel = this.getItemLevel(item).toString();
