@@ -1,6 +1,6 @@
 export const properties = {
     "armor": {
-        "potencyRune": {
+        "potency": {
             1: {
                 "level": 5,
                 "price": 160

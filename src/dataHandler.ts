@@ -23,7 +23,7 @@ export class DataHandler {
         let value = 0
         for (const key of Object.keys(properties["armor"])) {
             let runes = properties["armor"][key]
-            let runeValue = runes[item["system"][key]["value"]]
+            let runeValue = runes[item["system"]["runes"][key]]
             runeValue = runeValue === undefined ? 0 : runeValue[armourKey]
             value = Math.max(value, runeValue)
         }
